@@ -1,0 +1,12 @@
+body {
+    padding: 5%;
+    text-align: center;
+}
+
+input[type="number"] {
+    width:150px;
+ }
+
+.title {
+    padding-bottom: 3em;
+}
