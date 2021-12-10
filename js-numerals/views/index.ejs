@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"   href="/css/style.css">
+    <title>Converter</title>
+</head>
+<body>
+    <div class="title">
+        <h1>Number to Phrase Converter</h1>
+        <h3>between -999999 and 999999</h3>
+    </div>
+
+    <form action="/" method="POST">
+        Enter number: <input type="number" id="num" name="number" min="-999999" max="999999">
+        <input type="submit">
+      </form>
+      <div>
+          <h2><%= number %></h2>
+          <h2><%= data %></h2>
+      </div>
+</body>
+</html>
