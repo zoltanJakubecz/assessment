@@ -14,7 +14,6 @@ app.get('/', (req: Request, res: Response): void => {
 });
 
 app.post('/', (req: Request, res: Response): void => {
-    console.log("POST");
     let data = convertToPhrase(req.body.number);
     res.render('index', {data : data, number : req.body.number})
 })
