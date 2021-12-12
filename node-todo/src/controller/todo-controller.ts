@@ -43,3 +43,14 @@ export const addTodo = (req: Request, res: Response): void => {
     todos.push(todo);
     res.send(todos);
 }
+
+
+export const updateTodo = (req: Request, res: Response): void => {
+    const text: string = req.body.text;
+    const priority: number = req.body.priority;
+    const done: boolean = req.body.done;
+    const id: string = req.params.id;
+    const index: number = todos.findIndex(todo => todo.id == id);
+    todos.splice(index, 1, {id, text, priority, done});
+    res.send(todos);
+}
