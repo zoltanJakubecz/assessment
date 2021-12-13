@@ -11,17 +11,7 @@ const jsonFile = process.env.JSON_FILE || `${__dirname}/../data/data-dev.json`;
 
 
 export const getTasks = (req: Request, res: Response): void => {
-    new Promise((resolve, reject) => {
-
-       resolve(data.todos);
-
-    })
-    .then(rows => {
-        res.send(rows)
-    })
-    .catch((reason) => {
-        res.send(reason)
-    });
+       res.send(data.todos);
 }
 
 
