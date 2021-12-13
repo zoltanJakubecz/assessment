@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": "ca7d666a-f4fe-4e37-a494-bb6b308a9c97",
+      "text": "Todo 2112",
+      "priority": 2,
+      "done": false
+    },
+    {
+      "id": "b546b04d-1e56-4b91-989c-a4abb4999420",
+      "text": "todo 5150",
+      "priority": 3,
+      "done": false
+    },
+    {
+      "id": "b2bb4a40-8b85-491b-b968-68296c43b48d",
+      "text": "todo 5150",
+      "priority": 3,
+      "done": false
+    },
+    {
+      "id": "1edb4413-5d70-4a71-949f-1963ae005bb1",
+      "text": "Another todo without priority",
+      "priority": 3,
+      "done": false
+    }
+  ]
+}
