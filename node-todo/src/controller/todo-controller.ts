@@ -9,6 +9,7 @@ let timers: any = {};
 
 const jsonFile = process.env.JSON_FILE || `${__dirname}/../data/data-dev.json`;
 
+
 export const getTasks = (req: Request, res: Response): void => {
     new Promise((resolve, reject) => {
 
@@ -22,6 +23,7 @@ export const getTasks = (req: Request, res: Response): void => {
         res.send(reason)
     });
 }
+
 
 export const getOneTask = (req: Request, res: Response): void => {
     new Promise((resolve, reject) => {
@@ -54,18 +56,37 @@ export const updateTodo = (req: Request, res: Response): void => {
     let {text, priority, done} = req.body;
     const id: string = req.params.id;
     const index: number = todos.findIndex(todo => todo.id == id);
-    todos.splice(index, 1, {id, text, priority, done});
-    res.send(todos);
+    const message: string = validateIndex(index) || validateIncomingData(req.body.priority || 3, req.body.text);
+    if(!message){
+        if(done  && !todos[index].done){
+            setTimerToDeleteDoneTodo(id);
+        }
+        if(!done  && todos[index].done){
+            clearTimerForTodo(id);
+        }
+        todos.splice(index, 1, {id, text, priority, done});
+        res.send(todos);
+    } else {
+        res.send(message);
+    }
 }
 
 
 export const deleteTodo = (req: Request, res: Response): void => {
-    removeTodo(req.params.id);
+    res.send(removeTodo(req.params.id));
 
 }
 
-const removeTodo = (id: string): void => {
+
+const removeTodo = (id: string): string => {
     const index: number = todos.findIndex(todo => todo.id == id);
+    const message: string = validateIndex(index);
+    if(!message){
+        todos.splice(index, 1);
+        saveTodos(todos);
+        return 'Todo deleted';
+    }
+    return message;
 }
 
 
@@ -81,4 +102,17 @@ const setTimerToDeleteDoneTodo = (id: string) => {
 
 const clearTimerForTodo = (id: string) => {
     clearTimeout(timers[id]);
+}
+
+
+const validateIncomingData = (priority: number, text?: string): string => {
+    if(!text) return 'Text required';
+    if(!Number.isInteger(priority) || priority < 1 || priority > 5) return "Priority out of range";
+    return '';
+}
+
+
+const validateIndex = (index: number): string => {
+    if(index < 0) return 'Invalid ID';
+    return '';
 }
