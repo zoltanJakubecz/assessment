@@ -1,6 +1,6 @@
 import express from 'express';
 
-const app = express();
+export const app = express();
 import { routes } from  './routes/todosRoute';
 
 app.use(express.json({ type: 'application/json'}));
