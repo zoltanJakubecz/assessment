@@ -55,6 +55,7 @@ export const updateTodo = (req: Request, res: Response): void => {
             clearTimerForTodo(id);
         }
         todos.splice(index, 1, {id, text, priority, done});
+        saveTodos(todos);
         res.send(todos);
     } else {
         res.send(message);
